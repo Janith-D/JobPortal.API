@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace JobPortal.API.Models
@@ -12,6 +13,7 @@ namespace JobPortal.API.Models
         public int EmployerId { get; set; }
 
         [ForeignKey("EmployerId")]
+        [JsonIgnore]
         public User? Employer { get; set; }
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
@@ -22,6 +24,7 @@ namespace JobPortal.API.Models
         public DateTime DatePosted { get; set; } = DateTime.UtcNow;
         public string Status { get; set; } = "Active"; // Active, Inactive
 
+        [JsonIgnore]
         public ICollection<Application>? Applications { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace JobPortal.API.Models
@@ -14,7 +15,9 @@ namespace JobPortal.API.Models
         public string? ProfileImageUrl { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 
+        [JsonIgnore]
         public ICollection<Job>? Jobs { get; set; }
+        [JsonIgnore]
         public ICollection<Application>? Applications { get; set; }
     }
 }
